@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TC Hub – Магазин в Telegram</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background-color: #f3f4f6;
+      color: #111827;
+    }
+    .product {
+      padding: 20px;
+      border-radius: 10px;
+      background-color: white;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+      margin-bottom: 15px;
+    }
+    .product button {
+      background: #4F46E5;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 6px;
+      margin-top: 10px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>Добро пожаловать в TC Hub! 🛏️</h1>
+  <div class="product">
+    <h3>Товар 1: Умная лампа</h3>
+    <p>Цена: 1 990 руб.</p>
+    <button onclick="addToCart('lamp')">Купить</button>
+  </div>
+
+  <div class="product">
+    <h3>Товар 2: Чашка с логотипом</h3>
+    <p>Цена: 590 руб.</p>
+    <button onclick="addToCart('cup')">Купить</button>
+  </div>
+
+  <script>
+    const tg = window.Telegram.WebApp;
+    tg.expand();
+
+    tg.MainButton.setText("Закрыть").show().onClick(() => tg.close());
+
+    const user = tg.initDataUnsafe?.user;
+    console.log('Пользователь:', user?.first_name, user?.username);
+
+    function addToCart(product) {
+      alert(`Товар "${product}" добавлен в корзину!`);
+    }
+  </script>
+</body>
+</html>
